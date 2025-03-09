@@ -65,10 +65,10 @@ def extract_features(url):
         "Web_Traffic": web_traffic,
         "Domain_Age": domain_age,
         "Domain_End": 1 if ".com" in url or ".org" in url else 0,
-        "iFrame": 0,  # Placeholder, real implementation needed
-        "Mouse_Over": 0,  # Placeholder, real implementation needed
-        "Right_Click": 1,  # Placeholder, real implementation needed
-        "Web_Forwards": 0  # Placeholder, real implementation needed
+        "iFrame": 0,  
+        "Mouse_Over": 0,  
+        "Right_Click": 1,  
+        "Web_Forwards": 0  
     }
     return features
 
