@@ -10,9 +10,12 @@ const UrlForm = ({ setResult }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post("http://localhost:5000/predict", {
-        url,
-      }); // Add `await`
+      const response = await axios.post(
+        "https://detect-iq.onrender.com/predict",
+        {
+          url,
+        }
+      ); // Add `await`
       console.log("Response from backend:", response.data); // Log full response
 
       if (response.data.prediction) {
