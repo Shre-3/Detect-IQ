@@ -1,2 +1,2 @@
 # Detect-IQ
-A malicious URL Classifier
+A Malicious URL Classifier
