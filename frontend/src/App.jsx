@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import "./index.css"; // Ensure Tailwind CSS is properly configured
+import "./index.css"; 
 import UrlForm from "./components/UrlForm";
 import Result from "./components/Results";
 
-// Import Lucide Icons
+
 import { Shield } from "lucide-react";
 
 const App = () => {
@@ -12,7 +12,7 @@ const App = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0f172a] to-[#1e293b] p-6">
       <div className="bg-[#1e293b] shadow-lg rounded-2xl p-8 w-full max-w-lg border border-[#334155]">
-        {/* Header Section */}
+        
         <div className="flex flex-col items-center mb-6 space-y-3">
           <Shield className="h-14 w-14 text-[#06b6d4] drop-shadow-[0px_0px_10px_#06b6d4] rotate-[-3deg]" />
 
@@ -22,10 +22,10 @@ const App = () => {
           </p>
         </div>
 
-        {/* URL Input Form */}
+       
         <UrlForm setResult={setResult} />
 
-        {/* Results Section */}
+        
         {result && (
           <div className="mt-6">
             <Result result={result} />
