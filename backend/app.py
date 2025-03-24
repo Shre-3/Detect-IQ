@@ -11,11 +11,11 @@ from flask_cors import CORS
 app = Flask(__name__)
 CORS(app)
 
-# Load the trained model
+
 MODEL_PATH = "phishing_rf_model.pkl"
 model = joblib.load(MODEL_PATH)
 
-# Define feature columns
+
 FEATURE_COLUMNS = ['Have_IP', 'Have_At', 'URL_Length', 'URL_Depth', 'Redirection',
                    'https_Domain', 'TinyURL', 'Prefix/Suffix', 'DNS_Record', 'Web_Traffic',
                    'Domain_Age', 'Domain_End', 'iFrame', 'Mouse_Over', 'Right_Click', 'Web_Forwards']
@@ -26,18 +26,18 @@ def get_domain_info(url):
         domain = tldextract.extract(url).registered_domain
         whois_info = whois.whois(domain)
         
-        # Calculate domain age (years)
+        
         creation_date = whois_info.creation_date
         if isinstance(creation_date, list):
             creation_date = creation_date[0]
         domain_age = (time.time() - creation_date.timestamp()) / (365 * 24 * 3600) if creation_date else 0
         
-        # Check DNS record availability
+        
         dns_record = 1 if whois_info.domain_name else 0
         
         return domain_age, dns_record
     except:
-        return 0, 0  # Default values if WHOIS lookup fails
+        return 0, 0  
 
 def get_web_traffic(url):
     """Estimate web traffic (Simplified)"""
@@ -45,7 +45,7 @@ def get_web_traffic(url):
         response = requests.get(url, timeout=3)
         return 10 if response.status_code == 200 else 1
     except:
-        return 0  # Assume no traffic if site is unreachable
+        return 0  
 
 def extract_features(url):
     """Extract features from the given URL."""
@@ -81,11 +81,11 @@ def predict():
         if not url:
             return jsonify({"error": "No URL provided"}), 400
         
-        # Extract features from URL
+        
         features = extract_features(url)
         df = pd.DataFrame([features])
         
-        # Make prediction
+        
         prediction = model.predict(df)[0]
         result = "phishing" if prediction == 1 else "legitimate"
         
