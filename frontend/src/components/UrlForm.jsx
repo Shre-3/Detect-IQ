@@ -15,8 +15,8 @@ const UrlForm = ({ setResult }) => {
         {
           url,
         }
-      ); // Add `await`
-      console.log("Response from backend:", response.data); // Log full response
+      ); 
+      console.log("Response from backend:", response.data); 
 
       if (response.data.prediction) {
         setResult({ url: url, prediction: response.data.prediction });
